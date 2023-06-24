@@ -1,3 +1,5 @@
+import 'package:bleslive/screens/cart/cart.dart';
+import 'package:bleslive/screens/components/homescreens.dart';
 import 'package:bleslive/screens/components/messagePanel.dart';
 import 'package:bleslive/screens/components/productPanel.dart';
 import 'package:bleslive/screens/components/productcard.dart';
@@ -77,13 +79,22 @@ class _MyHomePageState extends State<MyHomePage> {
   }
   var mm = Chatproduct.Product;
 
+var  screens = [ Home(type: Chatproduct.Product),
+      CartScreen(),
+      Container(),
+      Container(),
+
+      ];
+
+ 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Bleslive "),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
+      floatingActionButton:_selectedIndex !=0?null: FloatingActionButton(onPressed: () {
         if (mm == Chatproduct.Product) {
           setState(() {
             mm = Chatproduct.Chat;
@@ -137,20 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
       ),
-      body: SlidingUpPanel(
-        maxHeight: MediaQuery.of(context).size.height * .7,
-        minHeight: MediaQuery.of(context).size.height * .3,
-        borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(28.0), topRight: Radius.circular(28.0)),
-        panel: mm == Chatproduct.Chat? const MessagingPannel() : const  ProductList(),
-        body: Column(
-          children: [ 
-            Center(
-              child: Text("This is the Widget behind the sliding panel"),
-            ),
-          ],
-        ),
-      ),
+      body: screens[_selectedIndex] ,
     );
   }
 }
