@@ -90,7 +90,7 @@ class _BodyState extends State<LoginBody> {
                                 // alignment: Alignment.,
                                 width: MediaQuery.of(context).size.width,
                                 child: Text(
-                                  'Sign in to your Bunge account',
+                                  'Sign in to your Blesket Account',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyText2!
