@@ -111,7 +111,6 @@ class _MessagingPannelState extends State<MessagingPannel> {
                 ],
               ),
             ),
-         
           ],
         ),
         TextFormField(

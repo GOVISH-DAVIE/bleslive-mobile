@@ -15,14 +15,16 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return  SlidingUpPanel(
+    return SlidingUpPanel(
       maxHeight: MediaQuery.of(context).size.height * .7,
       minHeight: MediaQuery.of(context).size.height * .3,
       borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(28.0), topRight: Radius.circular(28.0)),
-      panel: widget.type == Chatproduct.Chat? const MessagingPannel() : const  ProductList(),
+      panel: widget.type == Chatproduct.Chat
+          ? const MessagingPannel()
+          : const ProductList(),
       body: Column(
-        children: [ 
+        children: [
           Center(
             child: Text("This is the Widget behind the sliding panel"),
           ),

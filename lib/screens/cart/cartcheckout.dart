@@ -29,18 +29,17 @@ class _CartCheckoutState extends State<CartCheckout> {
                           Border.all(color: Color.fromARGB(255, 186, 185, 185)),
                       borderRadius: BorderRadius.circular(5)),
                   child: Column(
-
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Image.asset('assets/images/mpesa.png'),
-                    const  Text(
+                      const Text(
                         'MPESA',
                         style: TextStyle(
                           color: Color(0xFF595959),
                           fontSize: 16,
                           fontFamily: 'Inter',
-                          fontWeight: FontWeight.w600, 
+                          fontWeight: FontWeight.w600,
                         ),
                       )
                     ],
@@ -59,7 +58,7 @@ class _CartCheckoutState extends State<CartCheckout> {
                     children: [
                       SvgPicture.asset('assets/images/card.svg',
                           semanticsLabel: 'Acme Logo'),
-                    const  Text(
+                      const Text(
                         'Card',
                         style: TextStyle(
                           color: Color(0xFF595959),

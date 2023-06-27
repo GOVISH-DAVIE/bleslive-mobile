@@ -1,6 +1,10 @@
 import 'package:bleslive/utils/color.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 
+Logger logger = Logger(
+  printer: PrettyPrinter(),
+);
 ThemeData themeData() {
   return ThemeData(
       fontFamily: 'Mulish',
@@ -84,8 +88,7 @@ ButtonStyle defaultButtonTheme = ButtonStyle(
       borderRadius: BorderRadius.circular(50.0),
     )),
     foregroundColor: MaterialStateProperty.all<Color>(white),
-    backgroundColor: MaterialStateProperty.all(themePrimary)
-    );
+    backgroundColor: MaterialStateProperty.all(themePrimary));
 
 ButtonStyle inactiveButtonTheme = ButtonStyle(
     shape: MaterialStateProperty.all<RoundedRectangleBorder>(

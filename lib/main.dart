@@ -9,17 +9,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-
-enum Chatproduct {
-  Chat,
-  Product
-}
-
+enum Chatproduct { Chat, Product }
 
 void main() {
   runApp(const MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -77,16 +71,15 @@ class _MyHomePageState extends State<MyHomePage> {
       _selectedIndex = index;
     });
   }
+
   var mm = Chatproduct.Product;
 
-var  screens = [ Home(type: Chatproduct.Product),
-      CartScreen(),
-      Container(),
-      Container(),
-
-      ];
-
- 
+  var screens = [
+    Home(type: Chatproduct.Product),
+    CartScreen(),
+    Container(),
+    Container(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -94,29 +87,26 @@ var  screens = [ Home(type: Chatproduct.Product),
       appBar: AppBar(
         title: Text("Bleslive "),
       ),
-      floatingActionButton:_selectedIndex !=0?null: FloatingActionButton(onPressed: () {
-        if (mm == Chatproduct.Product) {
-          setState(() {
-            mm = Chatproduct.Chat;
-          });
-          
-        } else {
-          setState(() {
-            mm = Chatproduct.Product;
-          });
-        }
-      },
-      child: mm == Chatproduct.Chat? const Icon(
-        Icons.chat
-        
-      ):const   Icon(
-        Icons.shop
-        
-      ),
-
-      ),
+      floatingActionButton: _selectedIndex != 0
+          ? null
+          : FloatingActionButton(
+              onPressed: () {
+                if (mm == Chatproduct.Product) {
+                  setState(() {
+                    mm = Chatproduct.Chat;
+                  });
+                } else {
+                  setState(() {
+                    mm = Chatproduct.Product;
+                  });
+                }
+              },
+              child: mm == Chatproduct.Chat
+                  ? const Icon(Icons.chat)
+                  : const Icon(Icons.shop),
+            ),
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: themePrimary, 
+        selectedItemColor: themePrimary,
         unselectedItemColor: textThemeGrey,
         type: BottomNavigationBarType.shifting,
         items: <BottomNavigationBarItem>[
@@ -148,7 +138,7 @@ var  screens = [ Home(type: Chatproduct.Product),
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
       ),
-      body: screens[_selectedIndex] ,
+      body: screens[_selectedIndex],
     );
   }
 }
