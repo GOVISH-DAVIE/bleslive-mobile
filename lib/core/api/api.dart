@@ -16,6 +16,7 @@ abstract class ApiAbstract {
   Future<Response> post(
       {required String endpoint,
       required Map<String, dynamic> params,
+      required bool isAuhtenticated,
       bool? isJson});
   Future<Response> put(
       {required String endpoint, required Map<String, dynamic> params});
@@ -41,6 +42,109 @@ abstract class ApiAbstract {
       String? cookies});
 }
 
+class BlesketApi implements ApiAbstract {
+  @override
+  User? user;
+  final Dio _dio = Dio();
+
+  @override
+  Future<Response> delete(
+      {required String endpoint,
+      required Map<String, dynamic> params,
+      String? cookies}) {
+    // TODO: implement delete
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Response> deleteMessage(
+      {required String endpoint,
+      required Map<String, dynamic> params,
+      String? cookies}) {
+    // TODO: implement deleteMessage
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Response> get(
+      {required String endpoint, required Map<String, dynamic> params}) {
+    // TODO: implement get
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Response> getHTTP(
+      {required String endpoint, Map<String, dynamic>? params}) {
+    // TODO: implement getHTTP
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Response> post(
+      {required String endpoint,
+      required Map<String, dynamic> params,
+      required bool isAuhtenticated,
+      bool? isJson}) async {
+    if (isAuhtenticated == true) {
+      logger.i('$baseUrl$endpoint');
+      final prefs = await SharedPreferences.getInstance();
+      user = User.fromJson(jsonDecode(prefs.getString('creds')!));
+      // CookieJar cookieJar = CookieJar();
+      // _dio.interceptors.add(CookieManager(cookieJar));
+      return _dio.post('$blesket$endpoint',
+          data: isJson == null
+              ? FormData.fromMap(params)
+              : isJson == false
+                  ? FormData.fromMap(params)
+                  : json.encode(params),
+          options: Options(headers: <String, String>{
+            'Authorization': 'Bearer ${user!.access!}',
+            'OCS-APIRequest': 'true',
+            'accept': 'application/json'
+          }));
+    } else {
+      // CookieJar cookieJar = CookieJar();
+      // _dio.interceptors.add(CookieManager(cookieJar));
+      return _dio.post('$blesket$endpoint',
+          data: isJson == null
+              ? FormData.fromMap(params)
+              : isJson == false
+                  ? FormData.fromMap(params)
+                  : json.encode(params),
+          options:
+              Options(headers: <String, String>{'accept': 'application/json'}));
+    }
+  }
+
+  @override
+  Future<Response> postCookies(
+      {required String endpoint,
+      required Map<String, dynamic> params,
+      required cookieHeader}) {
+    // TODO: implement postCookies
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Response> put(
+      {required String endpoint, required Map<String, dynamic> params}) {
+    // TODO: implement put
+    throw UnimplementedError();
+  }
+
+  @override
+  void refeshAuth() {
+    // TODO: implement refeshAuth
+  }
+
+  @override
+  Future<Response> votePost(
+      {required String endpoint, required Map<String, dynamic> params}) {
+    // TODO: implement votePost
+    throw UnimplementedError();
+  }
+}
+
 class Api implements ApiAbstract {
   @override
   User? user;
@@ -59,7 +163,7 @@ class Api implements ApiAbstract {
     return _dio.get('$baseUrl$endpoint',
         queryParameters: params,
         options: Options(headers: <String, String>{
-          'authorization':  'Bearer ${user!.access}',
+          'authorization': 'Bearer ${user!.access}',
           'OCS-APIRequest': 'true',
           'accept': 'application/json'
         }));
@@ -69,6 +173,7 @@ class Api implements ApiAbstract {
   Future<Response> post(
       {required String endpoint,
       required Map<String, dynamic> params,
+      required bool isAuhtenticated,
       bool? isJson}) async {
     logger.i('$baseUrl$endpoint');
     final prefs = await SharedPreferences.getInstance();
@@ -82,8 +187,7 @@ class Api implements ApiAbstract {
                 ? FormData.fromMap(params)
                 : json.encode(params),
         options: Options(headers: <String, String>{
-          'authorization':
-              'Basic ${user!.access!}',
+          'authorization': 'Basic ${user!.access!}',
           'OCS-APIRequest': 'true',
           'accept': 'application/json'
         }));
@@ -100,8 +204,7 @@ class Api implements ApiAbstract {
         data: FormData.fromMap(params),
         options: Options(headers: {
           'cookie': cookieHeader,
-          'authorization':
-              'Basic ${user!.access!}',
+          'authorization': 'Basic ${user!.access!}',
           'OCS-APIRequest': 'true',
           'accept': 'application/json'
         }));
@@ -140,8 +243,7 @@ class Api implements ApiAbstract {
     return _dio.post('$baseUrl$endpoint',
         data: json.encode(params),
         options: Options(headers: <String, String>{
-          'authorization':
-              'Basic ${user!.access!}',
+          'authorization': 'Basic ${user!.access!}',
           'OCS-APIRequest': 'true',
           'accept': 'application/json'
         }));
@@ -154,8 +256,7 @@ class Api implements ApiAbstract {
     return _dio.put('$baseUrl$endpoint',
         data: json.encode(params),
         options: Options(headers: <String, String>{
-          'authorization':
-              'Basic ${user!.access!}',
+          'authorization': 'Basic ${user!.access!}',
           'OCS-APIRequest': 'true',
           'accept': 'application/json'
         }));
@@ -168,8 +269,7 @@ class Api implements ApiAbstract {
     return _dio.get('$baseUrl$endpoint',
         queryParameters: params,
         options: Options(headers: <String, String>{
-          'authorization':
-              'Basic ${user!.access!}',
+          'authorization': 'Basic ${user!.access!}',
           'OCS-APIRequest': 'true',
           'accept': 'application/json'
         }));
@@ -185,8 +285,7 @@ class Api implements ApiAbstract {
         queryParameters: params,
         options: Options(headers: <String, String>{
           'cookie': "$cookies",
-          'authorization':
-              'Basic ${user!.access!}',
+          'authorization': 'Basic ${user!.access!}',
           'OCS-APIRequest': 'true',
           'accept': 'application/json'
         }));
@@ -205,8 +304,7 @@ class Api implements ApiAbstract {
     // Obtain shared preferences.
     final prefs = await SharedPreferences.getInstance();
     User user = User.fromJson(jsonDecode(prefs.getString('creds')!));
-    String basicAuth =
-        'Bearer ${user.access}';
+    String basicAuth = 'Bearer ${user.access}';
 
     // final formData = FormData.fromMap({
     //   'file': await MultipartFile.fromFile(file),
@@ -230,10 +328,9 @@ class Api implements ApiAbstract {
     final prefs = await SharedPreferences.getInstance();
     User user = User.fromJson(jsonDecode(prefs.getString('creds')!));
 
-     String basicAuth =
-        'Bearer ${user.access}';
-        
-      return _dio.post('$baseOcsUrl$endpoint',
+    String basicAuth = 'Bearer ${user.access}';
+
+    return _dio.post('$baseOcsUrl$endpoint',
         data: FormData.fromMap(param),
         options: Options(headers: <String, String>{
           'authorization': basicAuth,
@@ -253,8 +350,7 @@ class Api implements ApiAbstract {
         queryParameters: params,
         options: Options(headers: <String, String>{
           'cookie': "$cookies",
-          'authorization':
-              'Basic ${user!.access!}',
+          'authorization': 'Basic ${user!.access!}',
           'OCS-APIRequest': 'true',
           'accept': 'application/json'
         }));

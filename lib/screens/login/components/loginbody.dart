@@ -1,3 +1,4 @@
+import 'package:bleslive/screens/dashboard/dashboard.dart';
 import 'package:bleslive/state/auth.dart';
 import 'package:bleslive/utils/FormError.dart';
 import 'package:bleslive/utils/buttons.dart';
@@ -47,7 +48,7 @@ class _BodyState extends State<LoginBody> {
   Widget build(BuildContext context) {
     return Consumer<AuthProvider>(
       builder: (context, authProvider, child) => authProvider.isLoggedIn
-          ? const Text('c')
+          ? const Dashboard()
           : Scaffold(
               body: SafeArea(
                 child: Form(
