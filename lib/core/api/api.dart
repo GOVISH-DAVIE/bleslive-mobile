@@ -67,11 +67,17 @@ class BlesketApi implements ApiAbstract {
 
   @override
   Future<Response> get(
-      {required String endpoint, required Map<String, dynamic> params}) {
-    // TODO: implement get
-    throw UnimplementedError();
+      {required String endpoint, Map<String, dynamic>? params}) async {
+        final prefs = await SharedPreferences.getInstance();
+        User u  = User.fromJson(jsonDecode(prefs.getString('user')!));
+    logger.i("'$baseUrl$endpoint'");
+    return _dio.get('$blesket$endpoint',
+        queryParameters: params,
+        options: Options(headers: <String, String>{  
+          "Authorization":"Bearer  ${u.access}",
+          'accept': 'application/json'
+        }));
   }
-
   @override
   Future<Response> getHTTP(
       {required String endpoint, Map<String, dynamic>? params}) {
@@ -268,9 +274,7 @@ class Api implements ApiAbstract {
     logger.i("'$baseUrl$endpoint'");
     return _dio.get('$baseUrl$endpoint',
         queryParameters: params,
-        options: Options(headers: <String, String>{
-          'authorization': 'Basic ${user!.access!}',
-          'OCS-APIRequest': 'true',
+        options: Options(headers: <String, String>{  
           'accept': 'application/json'
         }));
   }

@@ -1,4 +1,4 @@
-const baseUrl = "https://bungevirtual.com";
+const baseUrl = "https://api.davidmuia.com/";
 const blesket = "https://www.blesketke-live.com/api/v1/";
 const signalingUrl = "https://signaling.tk/standalone-signaling/spreed";
 // Module : File Upload

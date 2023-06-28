@@ -18,21 +18,27 @@ class ProductList extends StatelessWidget {
               color: Color.fromARGB(119, 108, 108, 108),
               borderRadius: BorderRadius.circular(20)),
         ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            PhoneActive(),
-            PhoneActive(),
-          ],
-        ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            PhoneActive(),
-            PhoneActive(),
-          ],
+        SingleChildScrollView(
+          child: Column(
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  PhoneActive(),
+                  PhoneActive(),
+                ],
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  PhoneActive(),
+                  PhoneActive(),
+                ],
+              ),
+            ],
+          ),
         ),
       ],
     );
