@@ -29,6 +29,7 @@ class _HomeState extends State<Home> {
         body: Column(
           children: [
             Text(context.read<ProductController>().products.length.toString()),
+            Text(context.read<ProductController>().session.toString()),
             
             Center(
               child: Text("This is the Widget behind the sliding panel"),

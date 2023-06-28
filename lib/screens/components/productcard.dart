@@ -1,10 +1,17 @@
+import 'package:bleslive/models/products/products.dart';
 import 'package:bleslive/utils/buttons.dart';
 import 'package:bleslive/utils/theme.dart';
 import 'package:flutter/material.dart';
 
-class PhoneActive extends StatelessWidget {
-  const PhoneActive({super.key});
+class PhoneActive extends StatefulWidget {
+  final Products product;
+  const PhoneActive({super.key, required this.product});
 
+  @override
+  State<PhoneActive> createState() => _PhoneActiveState();
+}
+
+class _PhoneActiveState extends State<PhoneActive> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -37,7 +44,7 @@ class PhoneActive extends StatelessWidget {
                       left: 20.58,
                       top: 0,
                       child: Text(
-                        '20',
+                        '${widget.product.variation?.first.price}',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -53,7 +60,7 @@ class PhoneActive extends StatelessWidget {
               left: 4.68,
               top: 198.51,
               child: Text(
-                'Milo',
+                '${widget.product.productName } \n',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 16,
@@ -69,7 +76,7 @@ class PhoneActive extends StatelessWidget {
                 height: 185.01,
                 decoration: ShapeDecoration(
                   image: DecorationImage(
-                    image: NetworkImage("https://via.placeholder.com/159x185"),
+                    image: NetworkImage("${widget.product.originalImage}"),
                     fit: BoxFit.fill,
                   ),
                   shape: RoundedRectangleBorder(

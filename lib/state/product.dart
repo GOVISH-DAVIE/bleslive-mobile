@@ -27,6 +27,7 @@ class ProductController extends ChangeNotifier {
   void getSessions() async {
     await _api.get(endpoint: 'session/active', params: {}).then((value) {
       logger.i(value);
+      _session = Session.fromJson(value.data[0]);
     });
   }
 }
