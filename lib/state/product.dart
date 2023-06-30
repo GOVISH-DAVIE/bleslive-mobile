@@ -2,8 +2,10 @@ import 'package:bleslive/core/api/api.dart';
 import 'package:bleslive/core/locator.dart';
 import 'package:bleslive/models/products/products.dart';
 import 'package:bleslive/models/session/session.dart';
+import 'package:bleslive/state/socket.dart';
 import 'package:bleslive/utils/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProductController extends ChangeNotifier {
   BlesketApi _blesketApi = locator.get<BlesketApi>();
@@ -24,10 +26,11 @@ class ProductController extends ChangeNotifier {
       notifyListeners();
     });
   }
-  void getSessions() async {
+  void getSessions({required BuildContext context}) async {
     await _api.get(endpoint: 'session/active', params: {}).then((value) {
       logger.i(value);
       _session = Session.fromJson(value.data[0]);
+       context.read<SocketApi>().init( context: context);
     });
   }
 }

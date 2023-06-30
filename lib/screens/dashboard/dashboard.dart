@@ -2,6 +2,7 @@ import 'package:bleslive/main.dart';
 import 'package:bleslive/screens/cart/cart.dart';
 import 'package:bleslive/screens/components/homescreens.dart';
 import 'package:bleslive/state/product.dart';
+import 'package:bleslive/state/socket.dart';
 import 'package:bleslive/utils/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -25,8 +26,9 @@ void initState() {
   super.initState();
   context.read<ProductController>()
   ..getProducts()
-  ..getSessions()
+  ..getSessions(context: context)
   ;
+ 
 }
 
 
