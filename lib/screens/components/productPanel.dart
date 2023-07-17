@@ -20,18 +20,18 @@ class _ProductListState extends State<ProductList> {
 
     final double itemWidth = size.width / 2;
     return Consumer<ProductController>(
-      builder:(context, value, child) =>  Column(
-        children: [
-          Container(
-            height: 10,
-            width: MediaQuery.of(context).size.width * .2,
-            margin: EdgeInsets.only(top: 10, bottom: 40),
-            decoration: BoxDecoration(
-                color: Color.fromARGB(119, 108, 108, 108),
-                borderRadius: BorderRadius.circular(20)),
-          ),
-          SingleChildScrollView(
-            child: Column(
+      builder:(context, value, child) =>  SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 10,
+              width: MediaQuery.of(context).size.width * .2,
+              margin: EdgeInsets.only(top: 10, bottom: 40),
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(119, 108, 108, 108),
+                  borderRadius: BorderRadius.circular(20)),
+            ),
+            Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -63,13 +63,13 @@ class _ProductListState extends State<ProductList> {
                           ],
                         ),
                       ), 
-
-
+      
+      
                
               ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
