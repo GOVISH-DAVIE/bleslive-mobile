@@ -1,5 +1,4 @@
 import 'package:bleslive/screens/dashboard/dashboard.dart';
-import 'package:bleslive/screens/signup/signup.dart';
 import 'package:bleslive/state/auth.dart';
 import 'package:bleslive/utils/FormError.dart';
 import 'package:bleslive/utils/buttons.dart';
@@ -10,18 +9,21 @@ import 'package:bleslive/utils/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
-class LoginBody extends StatefulWidget {
-  const LoginBody({super.key});
+class SignupBody extends StatefulWidget {
+  const SignupBody({super.key});
 
   @override
-  State<LoginBody> createState() => _BodyState();
+  State<SignupBody> createState() => _SignupBodyState();
 }
 
-class _BodyState extends State<LoginBody> {
+class _SignupBodyState extends State<SignupBody> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   String? userName;
   String? password;
+  String? fname;
+  String? lname;
+  String? email;
   final _formKey = GlobalKey<FormState>();
   bool visibility = true;
   bool remember = false;
@@ -64,9 +66,6 @@ class _BodyState extends State<LoginBody> {
                             SizedBox(
                               height: MediaQuery.of(context).size.height * .08,
                             ),
-                            const SizedBox(
-                              height: 60,
-                            ),
                             Container(
                                 padding: const EdgeInsets.only(
                                   left: 15,
@@ -74,7 +73,7 @@ class _BodyState extends State<LoginBody> {
                                 // alignment: Alignment.,
                                 width: MediaQuery.of(context).size.width,
                                 child: Text(
-                                  'Welcome Back',
+                                  'Create  Blesket Account',
                                   style: Theme.of(context)
                                       .textTheme
                                       .headline4!
@@ -92,12 +91,105 @@ class _BodyState extends State<LoginBody> {
                                 // alignment: Alignment.,
                                 width: MediaQuery.of(context).size.width,
                                 child: Text(
-                                  'Sign in to your Blesket Account',
+                                  'Signup ',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyText2!
                                       .copyWith(fontSize: 12),
                                 )),
+                            Container(
+                              padding: const EdgeInsets.only(left: 10),
+                              margin:
+                                  const EdgeInsets.symmetric(vertical: 10.0),
+                              child: TextFormField(
+                                controller: nameController,
+                                onSaved: (newValue) => fname = newValue,
+                                onChanged: (value) {
+                                  if (value.isNotEmpty) {
+                                    removeError(error: kNullError);
+                                  }
+                                  return;
+                                },
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    addError(error: kNullError);
+
+                                    return "";
+                                  }
+                                  return null;
+                                },
+                                decoration: const InputDecoration(
+                                  hintText: 'First Name',
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(30),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.only(left: 10),
+                              margin:
+                                  const EdgeInsets.symmetric(vertical: 10.0),
+                              child: TextFormField(
+                                controller: nameController,
+                                onSaved: (newValue) => userName = newValue,
+                                onChanged: (value) {
+                                  if (value.isNotEmpty) {
+                                    removeError(error: kNullError);
+                                  }
+                                  return;
+                                },
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    addError(error: kNullError);
+
+                                    return "";
+                                  }
+                                  return null;
+                                },
+                                decoration: const InputDecoration(
+                                  hintText: 'Last Name',
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(30),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.only(left: 10),
+                              margin:
+                                  const EdgeInsets.symmetric(vertical: 10.0),
+                              child: TextFormField(
+                                controller: nameController,
+                                onSaved: (newValue) => email = newValue,
+                                onChanged: (value) {
+                                  if (value.isNotEmpty) {
+                                    removeError(error: kNullError);
+                                  }
+                                  return;
+                                },
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    addError(error: kNullError);
+
+                                    return "";
+                                  }
+                                  return null;
+                                },
+                                decoration: const InputDecoration(
+                                  hintText: 'Email',
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(30),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
                             Container(
                               padding: const EdgeInsets.only(left: 10),
                               margin:
@@ -162,6 +254,47 @@ class _BodyState extends State<LoginBody> {
                                           ? Icons.visibility
                                           : Icons.visibility_off)),
                                   hintText: 'Password',
+                                  border: const OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(30),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                              margin:
+                                  const EdgeInsets.symmetric(vertical: 15.0),
+                              child: TextFormField(
+                                onSaved: (newValue) => password = newValue,
+                                onChanged: (value) {
+                                  if (value.isNotEmpty) {
+                                    removeError(error: kPassNullError);
+                                  }
+                                  return;
+                                },
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    addError(error: kPassNullError);
+
+                                    return "";
+                                  }
+                                  return null;
+                                },
+                                obscureText: visibility,
+                                controller: passwordController,
+                                decoration: InputDecoration(
+                                  suffixIcon: IconButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          visibility = !visibility;
+                                        });
+                                      },
+                                      icon: Icon(!visibility
+                                          ? Icons.visibility
+                                          : Icons.visibility_off)),
+                                  hintText: 'Confirm Password',
                                   border: const OutlineInputBorder(
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(30),
@@ -268,50 +401,12 @@ class _BodyState extends State<LoginBody> {
                                         // });
                                       },
                                       type: defaultButtonTheme,
-                                      child: const Text('Login'),
+                                      child: const Text('Create Account'),
                                     ),
-                            ),
-                         
-                         
-                          Container(
-                              padding: const EdgeInsets.only(
-                                left: 10,
-                              ),
-                              margin: const EdgeInsets.only(
-                                top: 20,
-                              ),
-                              child: Row( 
-                                children: [
-                                  SizedBox( 
-                                    child: Row(
-                                      children: const [
-                                        
-                                        Text(
-                                          "I don't have an account? ",
-                                          style: TextStyle(color: black),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.pushNamed(context, Signup.route);
-                                    },
-                                    child: Text(
-                                      ' Create account here',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1!
-                                          .copyWith(color: themePrimary),
-                                    ),
-                                  ),
-                                ],
-                              ),
                             ),
                             SizedBox(
-                              height: getProportionateScreenHeight(20),
-                            ),
-                         
+                              height: 200,
+                            )
                           ],
                         ),
                       )),
