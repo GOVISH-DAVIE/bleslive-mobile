@@ -88,11 +88,13 @@ class BlesketApi implements ApiAbstract {
       required Map<String, dynamic> params,
       required bool isAuhtenticated,
       bool? isJson}) async {
+            final prefs = await SharedPreferences.getInstance();
+logger.i(" creds 1 ${prefs.get('user')}");
     if (isAuhtenticated == true) {
-      logger.i('$baseUrl$endpoint');
-      final prefs = await SharedPreferences.getInstance();
-      user = User.fromJson(jsonDecode(prefs.getString('creds')!));
-      // CookieJar cookieJar = CookieJar();
+      logger.i('$blesket$endpoint');
+          final prefs = await SharedPreferences.getInstance();
+        User u  = User.fromJson(jsonDecode(prefs.getString('user')!));
+  // CookieJar cookieJar = CookieJar();
       // _dio.interceptors.add(CookieManager(cookieJar));
       return _dio.post('$blesket$endpoint',
           data: isJson == null
@@ -101,8 +103,8 @@ class BlesketApi implements ApiAbstract {
                   ? FormData.fromMap(params)
                   : json.encode(params),
           options: Options(headers: <String, String>{
-            'Authorization': 'Bearer ${user!.access!}',
-            'OCS-APIRequest': 'true',
+            'Authorization': 'Bearer ${u.access!}',
+           
             'accept': 'application/json'
           }));
     } else {

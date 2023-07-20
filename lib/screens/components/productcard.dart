@@ -1,7 +1,9 @@
 import 'package:bleslive/models/products/products.dart';
+import 'package:bleslive/state/product.dart';
 import 'package:bleslive/utils/buttons.dart';
 import 'package:bleslive/utils/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PhoneActive extends StatefulWidget {
   final Products product;
@@ -25,7 +27,9 @@ class _PhoneActiveState extends State<PhoneActive> {
             style: Theme.of(context).textTheme.titleSmall,
           ),
           BlesLiveButton(
-              callback: () {},
+              callback: () {
+                context.read<ProductController>().addToCartProduct(productItem: widget.product, context: context);
+              },
               type: defaultButtonTheme,
               child: Text(
                   "Buy Now \t KSH ${widget.product.variation?.first.price}"))

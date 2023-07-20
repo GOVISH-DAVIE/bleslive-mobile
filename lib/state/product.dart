@@ -7,6 +7,7 @@ import 'package:bleslive/state/socket.dart';
 import 'package:bleslive/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductController extends ChangeNotifier {
   BlesketApi _blesketApi = locator.get<BlesketApi>();
@@ -23,7 +24,7 @@ class ProductController extends ChangeNotifier {
   void getProducts() async {
     await _blesketApi.get(endpoint: 'store/all/', params: {}).then((value) {
       logger.i(value);
-      // _products = value.data 
+      // _products = value.data
       for (var i = 0; i < value.data.length; i++) {
         _products.add(Products.fromJson(value.data[i]));
       }
@@ -31,8 +32,10 @@ class ProductController extends ChangeNotifier {
     });
   }
 
-   Future addToCartProduct({required Products? productItem}) async {
+  Future addToCartProduct(
+      {required Products? productItem, required BuildContext context}) async {
     logger.i(productItem);
+
     logger.i({
       "quantity": 1,
       "product": productItem?.id,
@@ -41,25 +44,28 @@ class ProductController extends ChangeNotifier {
     });
     _addtoCartBusy = true;
     notifyListeners();
-    return await _blesketApi
-        .post(
-          isAuhtenticated: true,
-            endpoint: ProductEndPoints.addToCart,
-            params: {
-              "quantity": 1,
-              "product": productItem?.id,
-              "variations": productItem?.variation?.first.id,
-              "is_active": true
-            }, )
-        .then((value) {
-      logger.i("---add to Cart ${value}"); 
+    return await _blesketApi.post(
+      isJson: true,
+      isAuhtenticated: true,
+      endpoint: ProductEndPoints.addToCart,
+      params: {
+        "quantity": 1,
+        "product": productItem?.id,
+        "variations": productItem?.variation?.first.id,
+        "is_active": true
+      },
+    ).then((value) {
+      logger.i("---add to Cart ${value}");
       // _productLists = ProductLists.fromJson(value.data);
       _addtoCartBusy = false;
       notifyListeners();
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Added  to Cart Successfully")));
 
       return true;
     }).catchError((onError) {
       logger.i("alot 500 ${onError}");
+
       _addtoCartBusy = false;
       notifyListeners();
       return false;
@@ -67,15 +73,20 @@ class ProductController extends ChangeNotifier {
   }
 
 
-
-
+getCart(){
+  
+}
 
 
   void getSessions({required BuildContext context}) async {
     await _api.get(endpoint: 'session/active', params: {}).then((value) {
       logger.i(value);
       _session = Session.fromJson(value.data[0]);
-       context.read<SocketApi>().init( );
+      context.read<SocketApi>().init();
+      context
+          .read<SocketApi>()
+          .join(session: Session.fromJson(value.data[0]).uuid!);
+      notifyListeners();
     });
   }
 }

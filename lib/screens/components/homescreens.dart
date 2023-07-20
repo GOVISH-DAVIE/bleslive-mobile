@@ -34,7 +34,7 @@ class _HomeState extends State<Home> {
             Text("${context.read<SocketApi>().socket?.connected.toString()}"),
             ElevatedButton(
                 onPressed: () {
-                  context.read<SocketApi>().init();
+                  context.read<ProductController>().getSessions(context: context);
                 },
                 child: const Text('connect')),
             const Center(
