@@ -59,7 +59,7 @@ void initState() {
   var mm = Chatproduct.Product;
 
   var screens = [
-    Home(type: Chatproduct.Product),
+    Home(),
     CartScreen(),
     Container(),
     Container(),

@@ -75,7 +75,7 @@ class ProductController extends ChangeNotifier {
     await _api.get(endpoint: 'session/active', params: {}).then((value) {
       logger.i(value);
       _session = Session.fromJson(value.data[0]);
-       context.read<SocketApi>().init( context: context);
+       context.read<SocketApi>().init( );
     });
   }
 }

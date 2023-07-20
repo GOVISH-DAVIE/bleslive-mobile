@@ -9,27 +9,27 @@ import 'package:socket_io_client/socket_io_client.dart' as IO;
 class SocketApi    extends ChangeNotifier {
   late IO.Socket? socket;
   BuildContext? _context;
-
-void init({required BuildContext context }){
-_context = context;
- socket = IO.io("${baseUrlSocket}/mysocket", ); 
- socket?.onconnect(
-  (_){
-    logger.w('connected');
+  bool _isConnected = false;
+  bool get isConnected => _isConnected;
+  SocketApi(){
+    init();
   }
- );
- socket?.on('disconnected', (data){
-  logger.i("disconnected $data");
- });
 
- logger.w('message');
- logger.i(_context!.read<ProductController>().session?.uuid);
- socket?.emit('join_room', {
-				"room":_context!.read<ProductController>().session?.uuid ,
-				"email": 'client1212@naver.com',
-				"isadmin":false
-
-			});
+void init( ){ 
+  socket = IO.io("${baseUrlSocket}", <String, dynamic>{
+    "path":"/mysocket",
+    'autoConnect': false,
+    'transports': ['websocket'],
+  });
+  socket?.connect();
+  socket?.onConnect((_) {
+    print('Connection established');
+    _isConnected = true;
+    notifyListeners();
+  });
+  socket?.onDisconnect((_) => print('Connection Disconnection'));
+  socket?.onConnectError((err) => print(err));
+  socket?.onError((err) => print(err));
 }
 
 }
