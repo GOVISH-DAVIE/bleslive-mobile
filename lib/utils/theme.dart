@@ -54,12 +54,12 @@ TextTheme textTheme() {
 
 InputDecorationTheme inputDecorationTheme() {
   OutlineInputBorder outlineInputBorder = const OutlineInputBorder(
-    borderSide: BorderSide(color: transparent),
-    borderRadius: BorderRadius.all(Radius.circular(40.0)),
+    borderSide: BorderSide(color: Color.fromARGB(120, 0, 0, 0)),
+    borderRadius: BorderRadius.all(Radius.circular(10.0)),
     gapPadding: 10,
   );
   return InputDecorationTheme(
-    filled: true,
+    filled: false,
 
     // If  you are using latest version of flutter then lable text and hint text shown like this
     // if you r using flutter less then 1.20.* then maybe this is not working properly

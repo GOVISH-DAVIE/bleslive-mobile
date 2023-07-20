@@ -2,7 +2,6 @@ import 'package:bleslive/main.dart';
 import 'package:bleslive/screens/cart/cart.dart';
 import 'package:bleslive/screens/components/homescreens.dart';
 import 'package:bleslive/state/product.dart';
-import 'package:bleslive/state/socket.dart';
 import 'package:bleslive/utils/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -33,23 +32,7 @@ void initState() {
 
 
    int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
-  ];
-
+ 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -59,8 +42,8 @@ void initState() {
   var mm = Chatproduct.Product;
 
   var screens = [
-    Home(),
-    CartScreen(),
+    const Home(),
+    const CartScreen(),
     Container(),
     Container(),
   ];
@@ -69,7 +52,7 @@ void initState() {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Bleslive "),
+        title: const Text("Bleslive "),
       ),
       floatingActionButton: _selectedIndex != 0
           ? null

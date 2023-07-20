@@ -26,7 +26,7 @@ class _CartCheckoutState extends State<CartCheckout> {
                   width: MediaQuery.of(context).size.width * .25,
                   decoration: BoxDecoration(
                       border:
-                          Border.all(color: Color.fromARGB(255, 186, 185, 185)),
+                          Border.all(color: const Color.fromARGB(255, 186, 185, 185)),
                       borderRadius: BorderRadius.circular(5)),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -50,7 +50,7 @@ class _CartCheckoutState extends State<CartCheckout> {
                   width: MediaQuery.of(context).size.width * .25,
                   decoration: BoxDecoration(
                       border:
-                          Border.all(color: Color.fromARGB(255, 186, 185, 185)),
+                          Border.all(color: const Color.fromARGB(255, 186, 185, 185)),
                       borderRadius: BorderRadius.circular(5)),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

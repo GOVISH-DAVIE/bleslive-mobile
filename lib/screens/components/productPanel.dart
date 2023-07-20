@@ -26,9 +26,9 @@ class _ProductListState extends State<ProductList> {
             Container(
               height: 10,
               width: MediaQuery.of(context).size.width * .2,
-              margin: EdgeInsets.only(top: 10, bottom: 40),
+              margin: const EdgeInsets.only(top: 10, bottom: 40),
               decoration: BoxDecoration(
-                  color: Color.fromARGB(119, 108, 108, 108),
+                  color: const Color.fromARGB(119, 108, 108, 108),
                   borderRadius: BorderRadius.circular(20)),
             ),
             Column(
@@ -36,7 +36,7 @@ class _ProductListState extends State<ProductList> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 context.read<ProductController>().session == null
-                    ? SizedBox()
+                    ? const SizedBox()
                     : SizedBox(
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height,

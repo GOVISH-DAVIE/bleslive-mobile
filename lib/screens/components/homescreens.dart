@@ -36,8 +36,8 @@ class _HomeState extends State<Home> {
                 onPressed: () {
                   context.read<SocketApi>().init();
                 },
-                child: Text('connect')),
-            Center(
+                child: const Text('connect')),
+            const Center(
               child: Text("This is the Widget behind the sliding panel"),
             ),
           ],

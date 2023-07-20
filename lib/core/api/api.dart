@@ -80,10 +80,7 @@ class BlesketApi implements ApiAbstract {
   }
   @override
   Future<Response> getHTTP(
-      {required String endpoint, Map<String, dynamic>? params}) {
-    // TODO: implement getHTTP
-    throw UnimplementedError();
-  }
+      {required String endpoint, Map<String, dynamic>? params}) => throw UnimplementedError();
 
   @override
   Future<Response> post(

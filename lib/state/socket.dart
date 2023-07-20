@@ -23,9 +23,11 @@ void init( ){
   });
   socket?.connect();
   socket?.onConnect((_) {
+
     print('Connection established');
     _isConnected = true;
     notifyListeners();
+    
   });
   socket?.onDisconnect((_) => print('Connection Disconnection'));
   socket?.onConnectError((err) => print(err));

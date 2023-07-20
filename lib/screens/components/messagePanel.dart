@@ -20,9 +20,9 @@ class _MessagingPannelState extends State<MessagingPannel> {
             Container(
               height: 10,
               width: MediaQuery.of(context).size.width * .2,
-              margin: EdgeInsets.only(top: 10, bottom: 40),
+              margin: const EdgeInsets.only(top: 10, bottom: 40),
               decoration: BoxDecoration(
-                  color: Color.fromARGB(119, 108, 108, 108),
+                  color: const Color.fromARGB(119, 108, 108, 108),
                   borderRadius: BorderRadius.circular(20)),
             ),
             Container(
@@ -36,7 +36,7 @@ class _MessagingPannelState extends State<MessagingPannel> {
                     width: MediaQuery.of(context).size.width * .75,
                     height: 88,
                     decoration: ShapeDecoration(
-                      color: Color(0xFFD9D9D9),
+                      color: const Color(0xFFD9D9D9),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(11),
                       ),
@@ -56,7 +56,7 @@ class _MessagingPannelState extends State<MessagingPannel> {
                     width: MediaQuery.of(context).size.width * .75,
                     height: 88,
                     decoration: ShapeDecoration(
-                      color: Color(0x8C407235),
+                      color: const Color(0x8C407235),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(11),
                       ),
@@ -79,7 +79,7 @@ class _MessagingPannelState extends State<MessagingPannel> {
                     width: MediaQuery.of(context).size.width * .75,
                     height: 88,
                     decoration: ShapeDecoration(
-                      color: Color(0xFFD9D9D9),
+                      color: const Color(0xFFD9D9D9),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(11),
                       ),

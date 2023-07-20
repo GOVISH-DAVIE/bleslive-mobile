@@ -74,7 +74,7 @@ class _BodyState extends State<LoginBody> {
                                 // alignment: Alignment.,
                                 width: MediaQuery.of(context).size.width,
                                 child: Text(
-                                  'Welcome Back',
+                                  'Sign in',
                                   style: Theme.of(context)
                                       .textTheme
                                       .headline4!
@@ -92,12 +92,30 @@ class _BodyState extends State<LoginBody> {
                                 // alignment: Alignment.,
                                 width: MediaQuery.of(context).size.width,
                                 child: Text(
-                                  'Sign in to your Blesket Account',
+                                  'Enter your credentials',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyText2!
                                       .copyWith(fontSize: 12),
                                 )),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    "*",
+                                    style: TextStyle(color: Colors.red),
+                                  ),
+                                  Text(
+                                    'Username',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2!
+                                        .copyWith(fontSize: 14, color: black),
+                                  ),
+                                ],
+                              ),
+                            ),
                             Container(
                               padding: const EdgeInsets.only(left: 10),
                               margin:
@@ -120,16 +138,35 @@ class _BodyState extends State<LoginBody> {
                                   return null;
                                 },
                                 decoration: const InputDecoration(
-                                  hintText: 'Username',
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(30),
-                                    ),
-                                  ),
+                                  hintText: 'Enter phone number/ email address',
+                                  // border: OutlineInputBorder(
+
+                                  //   borderRadius: BorderRadius.all(
+                                  //     Radius.circular(1),
+                                  //   ),
+                                  // ),
                                 ),
                               ),
                             ),
-                            Container(
+                         
+                             Padding(
+                              padding: const EdgeInsets.only(left: 10,top:20),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    "*",
+                                    style: TextStyle(color: Colors.red),
+                                  ),
+                                  Text(
+                                    'Password',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2!
+                                        .copyWith(fontSize: 14, color: black),
+                                  ),
+                                ],
+                              ),
+                            ),   Container(
                               padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                               margin:
                                   const EdgeInsets.symmetric(vertical: 15.0),
@@ -271,21 +308,18 @@ class _BodyState extends State<LoginBody> {
                                       child: const Text('Login'),
                                     ),
                             ),
-                         
-                         
-                          Container(
+                            Container(
                               padding: const EdgeInsets.only(
                                 left: 10,
                               ),
                               margin: const EdgeInsets.only(
                                 top: 20,
                               ),
-                              child: Row( 
+                              child: Row(
                                 children: [
-                                  SizedBox( 
+                                  SizedBox(
                                     child: Row(
                                       children: const [
-                                        
                                         Text(
                                           "I don't have an account? ",
                                           style: TextStyle(color: black),
@@ -295,7 +329,8 @@ class _BodyState extends State<LoginBody> {
                                   ),
                                   InkWell(
                                     onTap: () {
-                                      Navigator.pushNamed(context, Signup.route);
+                                      Navigator.pushNamed(
+                                          context, Signup.route);
                                     },
                                     child: Text(
                                       ' Create account here',
@@ -311,7 +346,6 @@ class _BodyState extends State<LoginBody> {
                             SizedBox(
                               height: getProportionateScreenHeight(20),
                             ),
-                         
                           ],
                         ),
                       )),
