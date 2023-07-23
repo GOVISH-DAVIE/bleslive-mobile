@@ -1,10 +1,12 @@
 import 'package:bleslive/core/api/api.dart';
 import 'package:bleslive/core/locator.dart';
+import 'package:bleslive/models/cart/cart.dart';
 import 'package:bleslive/models/products/products.dart';
 import 'package:bleslive/models/session/session.dart';
 import 'package:bleslive/state/productendpoints.dart';
 import 'package:bleslive/state/socket.dart';
 import 'package:bleslive/utils/theme.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -20,6 +22,15 @@ class ProductController extends ChangeNotifier {
   List<Products> get products => _products;
   Session? _session;
   Session? get session => _session;
+
+
+  CartListModel? _cartListModel ;
+  CartListModel? get cartListModel => _cartListModel ;
+
+  Map<int?, List<MyCart>>? _sortedCart ;
+  Map<int?, List<MyCart>>? get sortedCart =>_sortedCart ;
+  int _Carttotals = 0;
+  int get cartTotals => _Carttotals;
 
   void getProducts() async {
     await _blesketApi.get(endpoint: 'store/all/', params: {}).then((value) {
@@ -74,7 +85,28 @@ class ProductController extends ChangeNotifier {
 
 
 getCart(){
-  
+  _blesketApi.get(endpoint: ProductEndPoints.cartList)
+  .then((value){
+    logger.i(value);
+    _cartListModel = CartListModel.fromJson(value.data);
+     _sortedCart = groupBy(CartListModel.fromJson(value.data).myCart!, (MyCart cart)=>cart.variations);
+     int totals = 0;
+     _sortedCart?.forEach((key,value){
+      var len = value.length;
+     
+      int? i =  products.where((product) => 
+      product.id == value.first.product).first.variation?.where(
+        (variation) => variation.id == value.first.product).first.price;
+     totals = totals+ (len *i!);
+       
+     }
+      
+     );
+     _Carttotals = totals;
+    logger.i(_sortedCart);
+    notifyListeners();
+  });
+
 }
 
 
