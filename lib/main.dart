@@ -1,9 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:bleslive/core/locator.dart';
+import 'package:bleslive/core/provider.dart';
+import 'package:flutter/material.dart'; 
 import 'package:bleslive/core/routes.dart';
 import 'package:bleslive/screens/splashscreen/splash.dart'; 
 import 'package:camera/camera.dart';
 import 'package:bleslive/utils/theme.dart';
+import 'package:provider/provider.dart';
 
 List<CameraDescription> cameras = [];
 
@@ -12,10 +14,10 @@ main() async {
   WidgetsFlutterBinding.ensureInitialized();
   try {
     cameras = await availableCameras();
-  } on CameraException catch (e) {
-    print('Error in fetching the cameras: $e');
-  }
-  runApp(const MyApp());
+  } on CameraException catch (e) { 
+  } 
+  setupLocator();
+  runApp(MultiProvider(providers: providers, child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
