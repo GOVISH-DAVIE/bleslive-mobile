@@ -1,6 +1,6 @@
-import 'package:bleslive/utils/color.dart';
+import 'package:logger/logger.dart'; 
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
+import 'package:bleslive/utils/colors.dart';
 
 Logger logger = Logger(
   printer: PrettyPrinter(),
@@ -13,9 +13,23 @@ ThemeData themeData() {
       floatingActionButtonTheme: _floatingActionButtonThemeData(),
       outlinedButtonTheme: _outlinedButtonTheme(),
       textButtonTheme: _textButtonTheme(),
-      inputDecorationTheme: inputDecorationTheme());
+      inputDecorationTheme: inputDecorationTheme(),
+      checkboxTheme: _checkboxTheme(),
+      iconTheme: _iconTheme(),
+    
+    
+      );
 }
 
+IconThemeData _iconTheme (){
+return const IconThemeData(
+  color: themePrimary,
+  
+);
+}
+CheckboxThemeData? _checkboxTheme (){
+  return CheckboxThemeData(fillColor: MaterialStateProperty.all<Color>(themePrimary) );
+}
 FloatingActionButtonThemeData _floatingActionButtonThemeData() {
   return const FloatingActionButtonThemeData(
       backgroundColor: themePrimary, elevation: 0);
@@ -54,7 +68,7 @@ TextTheme textTheme() {
 
 InputDecorationTheme inputDecorationTheme() {
   OutlineInputBorder outlineInputBorder = const OutlineInputBorder(
-    borderSide: BorderSide(color: Color.fromARGB(120, 0, 0, 0)),
+    borderSide: BorderSide(color: textThemeGrey),
     borderRadius: BorderRadius.all(Radius.circular(10.0)),
     gapPadding: 10,
   );

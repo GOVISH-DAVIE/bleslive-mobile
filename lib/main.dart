@@ -1,32 +1,34 @@
-import 'package:bleslive/core/locator.dart';
-import 'package:bleslive/core/providers.dart';
-import 'package:bleslive/core/router.dart';
-import 'package:bleslive/screens/login/login.dart';
-import 'package:bleslive/utils/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter/services.dart';
+import 'package:bleslive/core/routes.dart';
+import 'package:bleslive/screens/splashscreen/splash.dart'; 
+import 'package:camera/camera.dart';
+import 'package:bleslive/utils/theme.dart';
 
-enum Chatproduct { Chat, Product }
+List<CameraDescription> cameras = [];
 
-void main() {
-    WidgetsFlutterBinding.ensureInitialized();
-  setupLocator();
-  runApp(MultiProvider( providers: providers,  child: const MyApp()));
+
+main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  try {
+    cameras = await availableCameras();
+  } on CameraException catch (e) {
+    print('Error in fetching the cameras: $e');
+  }
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  const MyApp({Key? key}) : super(key: key);
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Bleslive ',
+      debugShowCheckedModeBanner: false,
+      title: 'Blesket App',
       theme: themeData(),
-   
-      initialRoute: Login.route,
       routes: routes,
-        );
+      initialRoute: SplashScreen.route, 
+    );
   }
 }
- 
