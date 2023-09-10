@@ -1,3 +1,5 @@
+import 'package:bleslive/utils/constant.dart';
+import 'package:bleslive/utils/theme.dart';
 import 'package:dio/dio.dart';
 import 'package:bleslive/core/api/api.dart';
 
@@ -18,8 +20,9 @@ class Api implements ApiAbstract{
   
   @override
   Future<Response> post({required String endpoint, required Map<String, dynamic> params, bool? isJson, bool? isAuthorized}) {
-    // TODO: implement post
-    throw UnimplementedError();
+    logger.i('$baseUrl$endpoint');
+    logger.i(params);
+   return  _dio.post('$baseUrl$endpoint', data: params);
   }
   
   @override

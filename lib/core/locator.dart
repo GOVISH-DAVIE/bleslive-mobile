@@ -1,4 +1,4 @@
-import 'package:bleslive/state/auth.dart';
+import 'package:bleslive/state/auth/auth.dart';
 import 'package:get_it/get_it.dart';
 
 import 'api/api_implimentation.dart';

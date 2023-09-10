@@ -1,5 +1,5 @@
 import 'package:animated_snack_bar/animated_snack_bar.dart';
-import 'package:bleslive/state/auth.dart';
+import 'package:bleslive/state/auth/auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:bleslive/utils/constant.dart';
