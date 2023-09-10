@@ -9,14 +9,15 @@ import 'package:bleslive/screens/profile/profile.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart'; 
 
 
-class navBar extends StatefulWidget {
-  const navBar({super.key});
+class Dashboard extends StatefulWidget {
+  static String  route = 'dashboard';
+  const Dashboard({super.key});
 
   @override
-  State<navBar> createState() => _navBarState();
+  State<Dashboard> createState() => _NavBarState();
 }
 
-class _navBarState extends State<navBar> {
+class _NavBarState extends State<Dashboard> {
 
 
   PersistentTabController? _controller;

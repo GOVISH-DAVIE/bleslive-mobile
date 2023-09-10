@@ -16,9 +16,16 @@ ThemeData themeData() {
       inputDecorationTheme: inputDecorationTheme(),
       checkboxTheme: _checkboxTheme(),
       iconTheme: _iconTheme(),
+    progressIndicatorTheme: _progressIndicatorTheme()
     
     
       );
+}
+
+ProgressIndicatorThemeData _progressIndicatorTheme (){
+  return ProgressIndicatorThemeData(
+color: themePrimary
+  );
 }
 
 IconThemeData _iconTheme (){

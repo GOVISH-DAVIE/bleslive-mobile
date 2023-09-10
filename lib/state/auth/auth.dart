@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:bleslive/core/api/api_implimentation.dart';
 import 'package:bleslive/models/login_response/login_response.dart';
+import 'package:bleslive/screens/navBar/navbar.dart';
 import 'package:bleslive/state/auth/auth_endpoints.dart';
 import 'package:bleslive/utils/theme.dart';
 import 'package:flutter/material.dart';
@@ -13,11 +14,12 @@ class AuthProvider extends ChangeNotifier {
   bool get isBusy => _isBusy;
   LoginResponse? _user;
   LoginResponse? get user => _user;
-  login({required String email, required String password}) async {
+  login({required String email, required String password, required BuildContext context}) async {
     // Obtain shared preferences.
     final prefs = await SharedPreferences.getInstance();
 
     logger.d(password);
+    logger.d('password');
     _isBusy = true;
     notifyListeners();
     await _api
@@ -30,8 +32,10 @@ class AuthProvider extends ChangeNotifier {
       LoginResponse _login = LoginResponse.fromJson(value.data);
       _user = _login;
       prefs.setString('user', jsonEncode(_login));
+
       _isBusy = false;
       notifyListeners();
+      Navigator.of(context).pushNamed(Dashboard.route);
     }).catchError((onError) {
       logger.e(onError);
       _isBusy = false;

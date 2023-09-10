@@ -166,10 +166,7 @@ class SignUp extends StatelessWidget {
 
               InkWell(
                 onTap: () {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => navBar()));
+                  Navigator.popAndPushNamed(context, Dashboard.route);
                   AnimatedSnackBar.material(
                     'Registration Success!',
                     type: AnimatedSnackBarType.success,

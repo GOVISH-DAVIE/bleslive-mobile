@@ -144,11 +144,12 @@ class _SigninBodyState extends State<SigninBody> {
                                     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                 .hasMatch(value));
                             logger.d(value);
-                            if (RegExp(
+                            if (!RegExp(
                                     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                 .hasMatch(value)) {
                               logger.d('invalid email');
                               addError(error: kInvalidEmailError);
+                              return "";
                             }
                             return null;
                           },
@@ -289,7 +290,7 @@ class _SigninBodyState extends State<SigninBody> {
                             setState(() {
                               errors.clear();
                             });
-                          authProvider.login(email: userName!, password: password!);
+                          authProvider.login(email: userName!, password: password! , context: context);
                                 AnimatedSnackBar.material(
                             'Sign In Success!',
                             type: AnimatedSnackBarType.success,
@@ -302,7 +303,7 @@ class _SigninBodyState extends State<SigninBody> {
     
                       
                         },
-                        child: authProvider.isBusy?const CircularProgressIndicator() : Container(
+                        child: authProvider.isBusy?const Center(child:  CircularProgressIndicator()) : Container(
                           width: MediaQuery.of(context).size.width,
                           height: MediaQuery.of(context).size.height * 0.05,
                           margin: const EdgeInsets.only(left: 20, right: 20),

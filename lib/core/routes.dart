@@ -1,4 +1,5 @@
 
+import 'package:bleslive/screens/navBar/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:bleslive/screens/signin/signin.dart';
 import 'package:bleslive/screens/signup/signup.dart';
@@ -10,5 +11,6 @@ final Map<String, WidgetBuilder> routes ={
   Signin.route :(context) =>const Signin(),
   SplashScreen.route:(context) => const SplashScreen(title: 'Blesket App'),
   UserType.route:(context) => const UserType(),
+  Dashboard.route:(context) => const Dashboard(),
 
 };
