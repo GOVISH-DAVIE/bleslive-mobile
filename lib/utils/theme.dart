@@ -23,7 +23,7 @@ ThemeData themeData() {
 }
 
 ProgressIndicatorThemeData _progressIndicatorTheme (){
-  return ProgressIndicatorThemeData(
+  return const ProgressIndicatorThemeData(
 color: themePrimary
   );
 }

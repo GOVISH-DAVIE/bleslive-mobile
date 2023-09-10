@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
   _SplashScreenState() {
     Timer(const Duration(milliseconds: 4000), () {
       setState(() {
-        Navigator.pushNamed(context, UserType.route);
+        Navigator.popAndPushNamed(context, UserType.route);
       });
     });
 

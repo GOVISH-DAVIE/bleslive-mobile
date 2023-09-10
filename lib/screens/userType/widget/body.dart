@@ -50,7 +50,7 @@ class _UserTypeBodyState extends State<UserTypeBody> {
                     children: [
                       InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, Signin.route);
+                          Navigator.of(context).popAndPushNamed(Signin.route);
                           AnimatedSnackBar.material(
                             'Welcome streamer!',
                             type: AnimatedSnackBarType.success,

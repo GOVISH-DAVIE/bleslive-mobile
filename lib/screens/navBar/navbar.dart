@@ -31,15 +31,11 @@ class _NavBarState extends State<Dashboard> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.greenAccent,
+    return Scaffold( 
       appBar:  AppBar(
         elevation: 0,
-        iconTheme: IconThemeData(
-          color: Colors.amberAccent,
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.blue,
+        
+        centerTitle: true, 
         actions: [
           Builder(
             builder: (context) {

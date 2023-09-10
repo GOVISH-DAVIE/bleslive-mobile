@@ -35,7 +35,7 @@ class AuthProvider extends ChangeNotifier {
 
       _isBusy = false;
       notifyListeners();
-      Navigator.of(context).pushNamed(Dashboard.route);
+      Navigator.of(context).popAndPushNamed(Dashboard.route);
     }).catchError((onError) {
       logger.e(onError);
       _isBusy = false;
