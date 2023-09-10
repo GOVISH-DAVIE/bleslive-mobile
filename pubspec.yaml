@@ -48,7 +48,8 @@ dependencies:
   flutter_switch: ^0.3.2
   date_range_form_field: ^1.0.2
   flutter_svg:  
-  get_it:
+  get_it: ^7.3.0
+  shared_preferences: ^2.0.17
 
 
   logger: ^1.1.0

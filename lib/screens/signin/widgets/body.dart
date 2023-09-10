@@ -302,7 +302,7 @@ class _SigninBodyState extends State<SigninBody> {
     
                       
                         },
-                        child: Container(
+                        child: authProvider.isBusy?const CircularProgressIndicator() : Container(
                           width: MediaQuery.of(context).size.width,
                           height: MediaQuery.of(context).size.height * 0.05,
                           margin: const EdgeInsets.only(left: 20, right: 20),
